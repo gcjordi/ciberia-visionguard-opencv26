@@ -31,7 +31,7 @@ def upload_evidence(path: str | Path, trace_id: str) -> dict[str, Any]:
         return {"s3_persisted": True, "bucket": settings.s3_bucket, "key": key}
     except Exception as exc:
         log.warning("S3 upload failed: %s", exc)
-        return {"s3_persisted": False, "error": str(exc)}
+        return {"s3_persisted": False, "error": "upload failed"}
 
 
 def put_trace(trace_id: str, payload: dict[str, Any]) -> bool:
