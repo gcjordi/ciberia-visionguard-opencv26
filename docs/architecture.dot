@@ -1,0 +1,35 @@
+digraph G {
+  graph [rankdir=LR, bgcolor="white", pad="0.3", nodesep="0.45", ranksep="0.75"];
+  node [shape=box, style="rounded,filled", fillcolor="white", color="#5b6573", fontcolor="#111111", fontname="Arial", fontsize=11, margin="0.16,0.10"];
+  edge [fontname="Arial", fontsize=9, color="#5b6573", fontcolor="#222222"];
+
+  user [label="Judge / Operator"];
+  ui [label="VisionGuard Web UI\nFastAPI + Nginx"];
+  agent [label="Agent Orchestrator\nPERCEIVE → DECIDE → ACT"];
+  cv [label="OpenCV 5 / COOL\nAWS Graviton4"];
+  evidence [label="Visual Evidence\nMotion + Flow + Quality + Stress"];
+  vcts [label="VCTS Trust Engine\n0–100"];
+  tool [label="Agent-selected OpenCV Tool\nCLAHE / UNSHARP / DENOISE"];
+  act [label="ACT\nAlert / downstream action"];
+  human [label="HUMAN REVIEW\nApprove / Reject"];
+  s3 [shape=cylinder, label="Amazon S3\nEncrypted short-lived evidence"];
+  ddb [shape=cylinder, label="DynamoDB\nAgent trace"];
+  cw [label="CloudWatch\nLatency / VCTS / actions"];
+  iam [label="IAM Role\nLeast privilege"];
+
+  user -> ui;
+  ui -> agent;
+  agent -> cv;
+  cv -> evidence;
+  evidence -> vcts;
+  vcts -> agent [label="trust evidence"];
+  agent -> act [label="high trust"];
+  agent -> tool [label="uncertain"];
+  tool -> cv [label="re-perceive"];
+  agent -> human [label="insufficient trust"];
+  human -> act [label="explicit approval", style=dashed];
+  ui -> s3 [label="optional"];
+  agent -> ddb;
+  agent -> cw;
+  iam -> ui [style=dotted];
+}

@@ -1,0 +1,7 @@
+# Install INSIDE the official /opt/cool Python environment. Intentionally excludes opencv-python.
+numpy==2.3.5
+fastapi==0.128.2
+uvicorn[standard]==0.48.0
+python-multipart==0.0.29
+pydantic==2.13.4
+boto3==1.43.18

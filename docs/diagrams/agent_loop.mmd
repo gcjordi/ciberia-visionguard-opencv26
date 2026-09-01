@@ -1,0 +1,13 @@
+flowchart TD
+    P[PERCEPTION: OpenCV 5] --> D[DECISION: calculate VCTS]
+    D -->|VCTS >= 85| A[ACT]
+    D -->|65-84| V[VERIFY]
+    D -->|40-64| R[RE-OBSERVE]
+    D -->|<40| H[HUMAN REVIEW]
+    V --> T[TOOL CALL: CLAHE / UNSHARP / DENOISE]
+    R --> T
+    T --> P2[RE-PERCEPTION: OpenCV 5]
+    P2 --> G{Trust + robustness gates pass?}
+    G -->|Yes| A
+    G -->|No| H
+    H --> HR[Human approve / reject]

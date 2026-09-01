@@ -1,0 +1,7 @@
+aws_region    = "eu-west-1"
+cool_ami_id   = "ami-REPLACE_WITH_MARKETPLACE_COOL_AMI"
+instance_type = "c8g.xlarge"
+vpc_id        = "vpc-REPLACE"
+subnet_id     = "subnet-REPLACE"
+admin_cidr    = "YOUR.PUBLIC.IP/32"
+key_name      = "YOUR_EC2_KEYPAIR"

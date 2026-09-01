@@ -1,0 +1,16 @@
+flowchart LR
+    U[Judge / Operator] --> UI[VisionGuard Web UI / FastAPI]
+    UI --> AG[Agent Orchestrator]
+    AG --> CV[OpenCV 5 / COOL on AWS Graviton4]
+    CV --> EV[Visual Evidence]
+    EV --> V[VCTS Trust Engine]
+    V --> AG
+    AG -->|ACT| A[Alert / Action]
+    AG -->|VERIFY / RE-OBSERVE| TOOL[Agent-selected OpenCV tool]
+    TOOL --> CV
+    AG -->|low trust| H[Human Approval]
+    UI --> S3[(Amazon S3 Evidence)]
+    AG --> DDB[(DynamoDB Trace)]
+    AG --> CW[CloudWatch Metrics]
+    EC2[EC2 Graviton4 + COOL AMI] --- UI
+    IAM[IAM Instance Role] --- EC2

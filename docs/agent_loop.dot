@@ -1,0 +1,22 @@
+digraph G {
+  graph [rankdir=TB, bgcolor="white", pad="0.3", nodesep="0.35", ranksep="0.45"];
+  node [shape=box, style="rounded,filled", fillcolor="white", color="#5b6573", fontcolor="#111111", fontname="Arial", fontsize=11, margin="0.14,0.09"];
+  edge [fontname="Arial", fontsize=9, color="#5b6573", fontcolor="#222222"];
+  p [label="PERCEPTION\nOpenCV 5 visual analysis"];
+  d [label="DECISION\nCalculate VCTS"];
+  v [label="VERIFY / RE-OBSERVE"];
+  t [label="TOOL CALL\nCLAHE / UNSHARP / DENOISE"];
+  p2 [label="RE-PERCEPTION\nOpenCV 5"];
+  g [shape=diamond, label="Trust gates pass?"];
+  a [label="ACT"];
+  h [label="HUMAN REVIEW\nApprove / Reject"];
+  p -> d;
+  d -> a [label="high trust"];
+  d -> v [label="uncertain"];
+  d -> h [label="low trust"];
+  v -> t;
+  t -> p2;
+  p2 -> g;
+  g -> a [label="yes"];
+  g -> h [label="no"];
+}

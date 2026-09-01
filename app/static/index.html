@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CiberIA VisionGuard</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <main>
+    <header>
+      <div class="eyebrow">COGNITIVE SECURITY FOR AGENTIC VISION</div>
+      <h1>CiberIA VisionGuard</h1>
+      <p class="lead">Not only whether AI can see — whether it knows when its visual evidence should not be trusted.</p>
+    </header>
+
+    <section class="panel">
+      <h2>Analyze a video</h2>
+      <p>Upload a short scene. The rightmost 32% of the frame is treated as a restricted zone.</p>
+      <input id="video" type="file" accept="video/*" />
+      <button id="run">Run agentic analysis</button>
+      <div id="status"></div>
+    </section>
+
+    <section id="result" class="hidden">
+      <div class="grid">
+        <div class="card"><span>VCTS</span><strong id="vcts">—</strong></div>
+        <div class="card"><span>Initial decision</span><strong id="initial">—</strong></div>
+        <div class="card"><span>Final action</span><strong id="final">—</strong></div>
+        <div class="card"><span>OpenCV</span><strong id="opencv">—</strong></div>
+      </div>
+      <div class="panel">
+        <h2>Agent trace</h2>
+        <ol id="trace"></ol>
+      </div>
+      <div id="review" class="panel hidden">
+        <h2>Human control required</h2>
+        <p>The agent has withheld autonomous action because the visual trust gate was not met.</p>
+        <button data-decision="approve">Approve action</button>
+        <button data-decision="reject" class="secondary">Reject action</button>
+      </div>
+      <details class="panel"><summary>Raw evidence</summary><pre id="raw"></pre></details>
+    </section>
+  </main>
+<script src="/static/app.js"></script>
+</body>
+</html>
